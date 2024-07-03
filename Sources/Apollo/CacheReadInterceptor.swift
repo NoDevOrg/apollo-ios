@@ -1,6 +1,7 @@
 import Foundation
 #if !COCOAPODS
 import ApolloAPI
+@_spi(Execution) import ApolloOperationSupport
 #endif
 
 /// An interceptor that reads data from the cache for queries, following the `HTTPRequest`'s `cachePolicy`.

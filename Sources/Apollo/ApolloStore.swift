@@ -1,6 +1,7 @@
 import Foundation
 #if !COCOAPODS
 import ApolloAPI
+@_spi(Execution) import ApolloOperationSupport
 #endif
 
 public typealias DidChangeKeysFunc = (Set<CacheKey>, UUID?) -> Void

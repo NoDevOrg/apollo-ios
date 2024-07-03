@@ -1,5 +1,6 @@
 #if !COCOAPODS
 import ApolloAPI
+import ApolloOperationSupport
 #endif
 
 /// An error interceptor called to allow further examination of error data when an error occurs in the chain.

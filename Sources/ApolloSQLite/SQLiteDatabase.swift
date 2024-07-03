@@ -1,6 +1,7 @@
 import Foundation
 #if !COCOAPODS
 import Apollo
+import ApolloOperationSupport
 #endif
 
 public struct DatabaseRow {

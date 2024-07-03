@@ -1,5 +1,6 @@
 #if !COCOAPODS
 import ApolloAPI
+@_spi(Execution) import ApolloOperationSupport
 #endif
 
 extension RootSelectionSet {

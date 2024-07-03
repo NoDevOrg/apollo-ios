@@ -1,3 +1,7 @@
+#if !COCOAPODS
+@_spi(Execution) import ApolloOperationSupport
+#endif
+
 final class DataLoader<Key: Hashable, Value> {
   public typealias BatchLoad = (Set<Key>) throws -> [Key: Value]
   private var batchLoad: BatchLoad

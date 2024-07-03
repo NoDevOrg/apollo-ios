@@ -2,6 +2,7 @@ import Foundation
 #if !COCOAPODS
 import Apollo
 import ApolloAPI
+import ApolloOperationSupport
 #endif
 
 private let serializedReferenceKey = "$reference"

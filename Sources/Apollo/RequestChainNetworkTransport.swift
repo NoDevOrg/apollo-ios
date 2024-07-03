@@ -1,6 +1,7 @@
 import Foundation
 #if !COCOAPODS
 import ApolloAPI
+@_spi(Execution) import ApolloOperationSupport
 #endif
 
 /// An implementation of `NetworkTransport` which creates a `RequestChain` object

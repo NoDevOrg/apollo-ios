@@ -1,6 +1,7 @@
 import Foundation
 #if !COCOAPODS
 import ApolloAPI
+@_spi(Execution) import ApolloOperationSupport
 #endif
 
 /// A network transport is responsible for sending GraphQL operations to a server.

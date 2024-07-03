@@ -1,6 +1,7 @@
 import Foundation
 #if !COCOAPODS
 import ApolloAPI
+@_spi(Execution) import ApolloOperationSupport
 #endif
 
 /// An interceptor to check the response code returned with a request.

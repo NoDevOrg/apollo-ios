@@ -1,5 +1,6 @@
 #if !COCOAPODS
 import ApolloAPI
+@_spi(Execution) import ApolloOperationSupport
 #endif
 
 /// A `GraphQLExecutionSource` designed for use when the data source is a generated model's

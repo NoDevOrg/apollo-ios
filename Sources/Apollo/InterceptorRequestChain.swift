@@ -1,6 +1,7 @@
 import Foundation
 #if !COCOAPODS
 import ApolloAPI
+import ApolloOperationSupport
 #endif
 
 /// A chain that allows a single network request to be created and executed.

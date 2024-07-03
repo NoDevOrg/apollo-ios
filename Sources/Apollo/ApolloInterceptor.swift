@@ -1,5 +1,6 @@
 #if !COCOAPODS
 import ApolloAPI
+@_spi(Execution) import ApolloOperationSupport
 #endif
 
 /// A protocol to set up a chainable unit of networking work.

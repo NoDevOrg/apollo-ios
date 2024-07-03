@@ -1,5 +1,6 @@
 #if !COCOAPODS
 import ApolloAPI
+import ApolloOperationSupport
 #endif
 
 public protocol RequestChain: Cancellable {

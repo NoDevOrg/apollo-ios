@@ -1,6 +1,7 @@
 import Foundation
 #if !COCOAPODS
 import ApolloAPI
+import ApolloOperationSupport
 #endif
 
 /// Parses multipart response data into chunks and forwards each on to the next interceptor.

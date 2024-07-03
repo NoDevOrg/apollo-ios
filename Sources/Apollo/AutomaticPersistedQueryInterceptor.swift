@@ -1,6 +1,7 @@
 import Foundation
 #if !COCOAPODS
 import ApolloAPI
+import ApolloOperationSupport
 #endif
 
 public struct AutomaticPersistedQueryInterceptor: ApolloInterceptor {

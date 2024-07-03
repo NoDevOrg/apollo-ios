@@ -1,6 +1,7 @@
 import Foundation
 #if !COCOAPODS
 import ApolloAPI
+import ApolloOperationSupport
 #endif
 
 /// Data about a response received by an HTTP request.

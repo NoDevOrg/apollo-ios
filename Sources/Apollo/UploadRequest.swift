@@ -1,6 +1,7 @@
 import Foundation
 #if !COCOAPODS
 import ApolloAPI
+import ApolloOperationSupport
 #endif
 
 /// A request class allowing for a multipart-upload request.

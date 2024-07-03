@@ -1,3 +1,7 @@
+#if !COCOAPODS
+import ApolloOperationSupport
+#endif
+
 public protocol NormalizedCache: AnyObject {
   
   /// Loads records corresponding to the given keys.

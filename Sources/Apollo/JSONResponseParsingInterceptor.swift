@@ -1,6 +1,7 @@
 import Foundation
 #if !COCOAPODS
 import ApolloAPI
+import ApolloOperationSupport
 #endif
 
 /// An interceptor which parses JSON response data into a `GraphQLResult` and attaches it to the `HTTPResponse`.

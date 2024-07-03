@@ -2,6 +2,7 @@ import Foundation
 #if !COCOAPODS
 import Apollo
 import ApolloAPI
+import ApolloOperationSupport
 #endif
 
 /// A network transport that sends subscriptions using one `NetworkTransport` and other requests using another `NetworkTransport`. Ideal for sending subscriptions via a web socket but everything else via HTTP.
