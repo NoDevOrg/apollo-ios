@@ -52,6 +52,9 @@ let package = Package(
       dependencies: [
         "ApolloAPI"
       ],
+      resources: [
+        .copy("Resources/PrivacyInfo.xcprivacy")
+      ],
       swiftSettings: [.enableUpcomingFeature("ExistentialAny")]
     ),
     .target(
