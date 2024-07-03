@@ -53,7 +53,8 @@ public protocol CacheKeyComputingExecutionSource: GraphQLExecutionSource {
 }
 
 extension CacheKeyComputingExecutionSource {
-  @_spi(Execution) public func computeCacheKey(for object: RawObjectData, in schema: any SchemaMetadata.Type) -> CacheKey? {
+  @_spi(Execution) 
+  public func computeCacheKey(for object: RawObjectData, in schema: any SchemaMetadata.Type) -> CacheKey? {
     let dataWrapper = opaqueObjectDataWrapper(for: object)
     return schema.cacheKey(for: dataWrapper)
   }

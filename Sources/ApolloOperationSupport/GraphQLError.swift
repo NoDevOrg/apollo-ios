@@ -88,7 +88,7 @@ extension GraphQLError: LocalizedError {
 }
 
 extension GraphQLError {
-  func asJSONDictionary() -> [String: Any] {
+  public func asJSONDictionary() -> [String: Any] {
     JSONConverter.convert(self)
   }
 }

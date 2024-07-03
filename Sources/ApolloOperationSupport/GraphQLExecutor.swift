@@ -66,8 +66,8 @@ public class FieldExecutionInfo {
 
   var mergedFields: [Selection.Field]
 
-  var responsePath: ResponsePath
-  let responseKeyForField: String
+  public var responsePath: ResponsePath
+  public let responseKeyForField: String
 
   var cachePath: ResponsePath = []
   private var _cacheKeyForField: String?
@@ -89,7 +89,7 @@ public class FieldExecutionInfo {
     cachePath = try parentInfo.cachePath.appending(cacheKeyForField())
   }
   
-  func cacheKeyForField() throws -> String {
+  public func cacheKeyForField() throws -> String {
     guard let _cacheKeyForField else {
       let cacheKey = try field.cacheKey(with: parentInfo.variables)
       _cacheKeyForField = cacheKey
@@ -153,7 +153,7 @@ public class FieldExecutionInfo {
 
 /// An error which has occurred during GraphQL execution.
 public struct GraphQLExecutionError: Error, LocalizedError {
-  let path: ResponsePath
+  public let path: ResponsePath
 
   public var pathString: String { path.description }
 
@@ -163,6 +163,11 @@ public struct GraphQLExecutionError: Error, LocalizedError {
   /// A description of the error which includes the path where the error occurred.
   public var errorDescription: String? {
     return "Error at path \"\(path))\": \(underlying)"
+  }
+
+  public init(path: ResponsePath, underlying: any Error) {
+    self.path = path
+    self.underlying = underlying
   }
 }
 

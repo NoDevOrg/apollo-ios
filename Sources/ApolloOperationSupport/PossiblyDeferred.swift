@@ -2,7 +2,8 @@
 /// - Parameters:
 ///   - elements: An array of possibly deferred values
 /// - Returns: A deferred array with the result of evaluating each element.
-func lazilyEvaluateAll<Value>(_ elements: [PossiblyDeferred<Value>]) -> PossiblyDeferred<[Value]> {
+@_spi(Execution)
+public func lazilyEvaluateAll<Value>(_ elements: [PossiblyDeferred<Value>]) -> PossiblyDeferred<[Value]> {
   return .deferred {
     try elements.map { try $0.get() }
   }
@@ -12,7 +13,8 @@ func lazilyEvaluateAll<Value>(_ elements: [PossiblyDeferred<Value>]) -> Possibly
 /// - Parameters:
 ///   - elements: An array of possibly deferred values
 /// - Returns: A deferred array with the result of evaluating each element.
-func compactLazilyEvaluateAll<Value>(_ elements: [PossiblyDeferred<Value?>]) -> PossiblyDeferred<[Value]> {
+@_spi(Execution)
+public func compactLazilyEvaluateAll<Value>(_ elements: [PossiblyDeferred<Value?>]) -> PossiblyDeferred<[Value]> {
   return .deferred {
     try elements.compactMap { try $0.get() }
   }
@@ -27,7 +29,8 @@ extension Sequence {
   ///   `PossiblyDeferred` instance for each element.
   /// - Returns: A `PossiblyDeferred` instance with the result of evaluating `transform`
   ///   on each of the elements of the receiver.
-  func deferredFlatMap<NewValue>(_ transform: @escaping (Element) throws -> PossiblyDeferred<NewValue>) -> PossiblyDeferred<[NewValue]> {
+  @_spi(Execution)
+  public func deferredFlatMap<NewValue>(_ transform: @escaping (Element) throws -> PossiblyDeferred<NewValue>) -> PossiblyDeferred<[NewValue]> {
     do {
       let deferredTransforms = try self.map { element in
         try transform(element)
@@ -54,7 +57,7 @@ public enum PossiblyDeferred<Value> {
   /// returned value as a success, or any thrown error as a failure.
   ///
   /// - Parameter body: A throwing closure to evaluate.
-  init(_ body: () throws -> Value) {
+  public init(_ body: () throws -> Value) {
     self = .immediate(Result(catching: body))
   }
 
@@ -63,7 +66,7 @@ public enum PossiblyDeferred<Value> {
   ///
   /// - Parameter body: A throwing closure to evaluate.
   @_disfavoredOverload
-  init(_ body: () throws -> PossiblyDeferred<Value>) {
+  public init(_ body: () throws -> PossiblyDeferred<Value>) {
     do {
       self = try body()
     } catch {
@@ -76,7 +79,7 @@ public enum PossiblyDeferred<Value> {
   ///
   /// - Returns: The success value, if the instance represents a success.
   /// - Throws: The failure value, if the instance represents a failure.
-  func get() throws -> Value {
+  public func get() throws -> Value {
     switch self {
     case .immediate(let result):
       return try result.get()
@@ -92,7 +95,7 @@ public enum PossiblyDeferred<Value> {
   ///   instance.
   /// - Returns: A `PossiblyDeferred` instance with the result of evaluating `transform`
   ///   as the new success value if this instance represents a success.
-  func map<NewValue>(_ transform: @escaping (Value) throws -> NewValue) -> PossiblyDeferred<NewValue> {
+  public func map<NewValue>(_ transform: @escaping (Value) throws -> NewValue) -> PossiblyDeferred<NewValue> {
     switch self {
     case .immediate(let result):
       return .immediate(Result { try transform(try result.get()) })
@@ -113,7 +116,7 @@ public enum PossiblyDeferred<Value> {
   ///   instance.
   /// - Returns: A `PossiblyDeferred` instance with the result of evaluating `transform`
   ///   as the new success value if this instance represents a success.
-  func flatMap<NewValue>(_ transform: @escaping (Value) -> PossiblyDeferred<NewValue>) -> PossiblyDeferred<NewValue> {
+  public func flatMap<NewValue>(_ transform: @escaping (Value) -> PossiblyDeferred<NewValue>) -> PossiblyDeferred<NewValue> {
     switch self {
     case .immediate(let result):
       do {
@@ -135,7 +138,7 @@ public enum PossiblyDeferred<Value> {
   ///   instance.
   /// - Returns: A `PossiblyDeferred` instance with the result of evaluating `transform`
   ///   as the new failure value if this instance represents a failure.
-  func mapError(_ transform: @escaping (any Error) -> any Error) -> PossiblyDeferred<Value> {
+  public func mapError(_ transform: @escaping (any Error) -> any Error) -> PossiblyDeferred<Value> {
     switch self {
     case .immediate(let result):
       return .immediate(result.mapError(transform))
@@ -148,7 +151,5 @@ public enum PossiblyDeferred<Value> {
         }
       }
     }
-  }
-
-  
+  }  
 }

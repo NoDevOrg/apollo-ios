@@ -13,7 +13,7 @@ import Foundation
 ///   - arguments: The list of arguments used to compute the cache key.
 /// - Returns: A formatted `String` to be used as the key for the field on an object in a
 ///            ``NormalizedCache``.
-func CacheKeyForField(named fieldName: String, arguments: JSONObject) -> String {
+public func CacheKeyForField(named fieldName: String, arguments: JSONObject) -> String {
   let argumentsKey = orderIndependentKey(for: arguments)
   return argumentsKey.isEmpty ? fieldName : "\(fieldName)(\(argumentsKey))"
 }

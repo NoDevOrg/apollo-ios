@@ -12,7 +12,7 @@ public enum JSONConverter {
     selectionSet.__data._data.mapValues(convert(value:))
   }
 
-  static func convert(_ dataDict: DataDict) -> [String: Any] {
+  public static func convert(_ dataDict: DataDict) -> [String: Any] {
     dataDict._data.mapValues(convert(value:))
   }
 

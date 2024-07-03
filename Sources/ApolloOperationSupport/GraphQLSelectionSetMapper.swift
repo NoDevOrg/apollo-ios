@@ -8,7 +8,7 @@ public final class GraphQLSelectionSetMapper<T: SelectionSet>: GraphQLResultAccu
 
   public let requiresCacheKeyComputation: Bool = false
 
-  let handleMissingValues: HandleMissingValues
+  public let handleMissingValues: HandleMissingValues
 
   public enum HandleMissingValues {
     case disallow
