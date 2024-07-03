@@ -15,6 +15,7 @@ let package = Package(
   products: [
     .library(name: "Apollo", targets: ["Apollo"]),
     .library(name: "ApolloAPI", targets: ["ApolloAPI"]),
+    .library(name: "ApolloOperationSupport", targets: ["ApolloOperationSupport"]),
     .library(name: "Apollo-Dynamic", type: .dynamic, targets: ["Apollo"]),
     .library(name: "ApolloSQLite", targets: ["ApolloSQLite"]),
     .library(name: "ApolloWebSocket", targets: ["ApolloWebSocket"]),
@@ -30,7 +31,8 @@ let package = Package(
     .target(
       name: "Apollo",
       dependencies: [
-        "ApolloAPI"
+        "ApolloAPI",
+        "ApolloOperationSupport"
       ],
       resources: [
         .copy("Resources/PrivacyInfo.xcprivacy")
@@ -42,6 +44,13 @@ let package = Package(
       dependencies: [],
       resources: [
         .copy("Resources/PrivacyInfo.xcprivacy")
+      ],
+      swiftSettings: [.enableUpcomingFeature("ExistentialAny")]
+    ),
+    .target(
+      name: "ApolloOperationSupport",
+      dependencies: [
+        "ApolloAPI"
       ],
       swiftSettings: [.enableUpcomingFeature("ExistentialAny")]
     ),
